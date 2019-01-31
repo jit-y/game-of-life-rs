@@ -1,0 +1,4 @@
+[[package]]
+name = "game-of-life-rs"
+version = "0.1.0"
+
