@@ -5,3 +5,4 @@ authors = ["YUJI takahashi <jit.y.31@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+rand = "0.6"
