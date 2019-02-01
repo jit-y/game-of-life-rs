@@ -1,3 +1,4 @@
+use failure;
 use rand;
 use std::{thread, time};
 
@@ -92,7 +93,25 @@ impl LifeGame {
 }
 
 fn main() {
-    let mut lg = LifeGame::new(25, 50);
+    std::process::exit(match run() {
+        Ok(_) => 0,
+        Err(err) => {
+            eprintln!("error: {:?}", err);
+            1
+        }
+    });
+}
+
+fn run() -> Result<(), failure::Error> {
+    let args: Vec<String> = std::env::args().collect();
+    if args.len() < 3 {
+        return Err(failure::err_msg("Usage: cmd <row> <colum>"));
+    }
+
+    let row = args[1].parse::<usize>()?;
+    let column = args[2].parse::<usize>()?;
+
+    let mut lg = LifeGame::new(row, column);
     let sleep_sec = time::Duration::new(1, 0);
     lg.render();
 
