@@ -61,9 +61,9 @@ impl LifeGame {
             + self.count(current_row - 1, current_column + 1)
             + self.count(current_row, current_column - 1)
             + self.count(current_row, current_column + 1)
-            + self.count(current_row - 1, current_column - 1)
-            + self.count(current_row - 1, current_column)
-            + self.count(current_row - 1, current_column + 1);
+            + self.count(current_row + 1, current_column - 1)
+            + self.count(current_row + 1, current_column)
+            + self.count(current_row + 1, current_column + 1);
 
         if val == 2 {
             return self.grid[r][c];
