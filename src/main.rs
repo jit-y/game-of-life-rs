@@ -65,13 +65,11 @@ impl LifeGame {
             + self.count(current_row + 1, current_column)
             + self.count(current_row + 1, current_column + 1);
 
-        if val == 2 {
-            return self.grid[r][c];
-        } else if val == 3 {
-            return true;
+        match val {
+            2 => self.grid[r][c],
+            3 => true,
+            _ => false,
         }
-
-        false
     }
 
     fn count(&self, r: i32, c: i32) -> u32 {
