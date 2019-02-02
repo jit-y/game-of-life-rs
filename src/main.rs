@@ -45,8 +45,7 @@ impl LifeGame {
 
         for r in 0..self.row - 1 {
             for c in 0..self.column - 1 {
-                let current = self.current_state(r, c);
-                new_grid[r][c] = current
+                new_grid[r][c] = self.current_state(r, c)
             }
         }
 
@@ -96,7 +95,7 @@ fn main() {
     std::process::exit(match run() {
         Ok(_) => 0,
         Err(err) => {
-            eprintln!("error: {:?}", err);
+            eprintln!("error: {}", err.as_fail());
             1
         }
     });
@@ -105,7 +104,10 @@ fn main() {
 fn run() -> Result<(), failure::Error> {
     let args: Vec<String> = std::env::args().collect();
     if args.len() < 3 {
-        return Err(failure::err_msg("Usage: cmd <row> <colum>"));
+        return Err(failure::err_msg(format!(
+            "Usage: {} <row> <colum>",
+            args[0]
+        )));
     }
 
     let row = args[1].parse::<usize>()?;
