@@ -28,6 +28,7 @@ impl LifeGame {
     }
 
     fn render(&self) {
+        print!("\x1b[{};{}H", 0, 0);
         for r in 0..self.row - 1 {
             for c in 0..self.column - 1 {
                 if self.grid[r][c] {
@@ -113,6 +114,7 @@ fn run() -> Result<(), failure::Error> {
 
     let mut lg = LifeGame::new(row, column);
     let sleep_sec = time::Duration::new(1, 0);
+    print!("\x1b[2J");
     lg.render();
 
     loop {
