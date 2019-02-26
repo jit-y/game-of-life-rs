@@ -12,8 +12,8 @@ impl LifeGame {
     fn new(row: usize, column: usize) -> LifeGame {
         let mut grid = vec![vec![false; column]; row];
 
-        for r in 0..row - 1 {
-            for c in 0..column - 1 {
+        for r in 0..row {
+            for c in 0..column {
                 if rand::random::<u32>() % 10 == 0 {
                     grid[r][c] = true
                 }
@@ -29,8 +29,8 @@ impl LifeGame {
 
     fn render(&self) {
         print!("\x1b[{};{}H", 0, 0);
-        for r in 0..self.row - 1 {
-            for c in 0..self.column - 1 {
+        for r in 0..self.row {
+            for c in 0..self.column {
                 if self.grid[r][c] {
                     print!("■")
                 } else {
@@ -44,8 +44,8 @@ impl LifeGame {
     fn update(&mut self) {
         let mut new_grid = vec![vec![false; self.column]; self.row];
 
-        for r in 0..self.row - 1 {
-            for c in 0..self.column - 1 {
+        for r in 0..self.row {
+            for c in 0..self.column {
                 new_grid[r][c] = self.current_state(r, c)
             }
         }
